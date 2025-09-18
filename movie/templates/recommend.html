@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Recomendador de Películas</h2>
+
+<form method="POST">
+  {% csrf_token %}
+  <input type="text" name="query" placeholder="Escribe tu descripción..." style="width:300px;">
+  <button type="submit">Buscar</button>
+</form>
+
+{% if recommended_movie %}
+  <h3>🎬 Película recomendada para: "{{ query }}"</h3>
+  <p><strong>{{ recommended_movie.title }}</strong> ({{ recommended_movie.year }})</p>
+  <p>{{ recommended_movie.description }}</p>
+  <img src="{{ recommended_movie.image.url }}" alt="{{ recommended_movie.title }}" width="200">
+{% endif %}
+{% endblock %}
